@@ -84,8 +84,8 @@ create index if not exists staging_comp_status_idx    on public.staging_competit
 create table if not exists public.staging_malls (
   id              text primary key default gen_random_uuid()::text,
   batch_id        text not null,
-  source          scraper_source_enum not null default 'nowbali.co.id',
-  source_url      text default '',
+  source          scraper_source_enum not null default 'osm',
+  source_url      text default 'https://www.nowbali.co.id',
   last_crawled_at timestamptz default now(),
   name            text not null,
   lat             double precision,

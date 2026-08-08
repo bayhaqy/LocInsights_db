@@ -77,7 +77,7 @@ create policy "public_read_ab_tests" on public.ab_tests for select using (true);
 -- =============================================================
 create or replace function public.merge_staging_store(p_staging_id text, p_reviewer text default 'system')
 returns text
-language pllgsql
+language plpgsql
 security definer
 as $$
 declare

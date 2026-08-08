@@ -15,15 +15,15 @@ values ('51', 'Bali', 'ID', 'Indonesia', -8.340539, 115.091948, 5780.06, 4362000
 -- Bali's 8 kabupaten + 1 kota (BPS 4-digit codes start with 51)
 insert into public.kabupaten (code, name, type, capital, province_code, province, country, city, lat, lng, area_km2, population_2024, population_density, gdrp_per_capita_juta, tier, hdmi_2024, tourist_hotels, source)
 values
-  ('5171', 'Kabupaten Karangasem',  'Kabupaten', 'Karangasem', '51', 'Bali', 'Indonesia', 'Karangasem', -8.4108, 115.5928, 839.54, 412000, 491, 47.2, 3, 71.45, 35, 'BPS Bali 2024'),
-  ('5172', 'Kabupaten Buleleng',    'Kabupaten', 'Singaraja',  '51', 'Bali', 'Indonesia', 'Singaraja',  -8.1150, 115.0883, 1365.88, 712000, 521, 38.5, 3, 70.12, 42, 'BPS Bali 2024'),
-  ('5173', 'Kabupaten Jembrana',    'Kabupaten', 'Negara',     '51', 'Bali', 'Indonesia', 'Negara',     -8.3833, 114.6167, 841.80, 165000, 196, 32.1, 3, 68.90, 12, 'BPS Bali 2024'),
-  ('5174', 'Kabupaten Tabanan',     'Kabupaten', 'Tabanan',    '51', 'Bali', 'Indonesia', 'Tabanan',    -8.5333, 115.0333, 839.33, 478000, 569, 41.7, 2, 72.34, 28, 'BPS Bali 2024'),
-  ('5175', 'Kabupaten Badung',      'Kabupaten', 'Mangupura',  '51', 'Bali', 'Indonesia', 'Mangupura',  -8.6333, 115.1833, 418.62, 612000, 1462, 78.5, 1, 80.15, 156, 'BPS Bali 2024'),
-  ('5176', 'Kabupaten Gianyar',     'Kabupaten', 'Gianyar',    '51', 'Bali', 'Indonesia', 'Gianyar',    -8.5500, 115.3167, 368.00, 575000, 1562, 65.2, 1, 76.88, 88, 'BPS Bali 2024'),
-  ('5177', 'Kabupaten Klungkung',   'Kabupaten', 'Semarapura', '51', 'Bali', 'Indonesia', 'Semarapura', -8.5333, 115.4000, 547.82, 220000, 402, 44.8, 2, 71.90, 22, 'BPS Bali 2024'),
-  ('5178', 'Kabupaten Bangli',      'Kabupaten', 'Bangli',     '51', 'Bali', 'Indonesia', 'Bangli',     -8.4667, 115.3500, 520.57, 268000, 515, 35.6, 3, 70.55, 8, 'BPS Bali 2024'),
-  ('5179', 'Kota Denpasar',         'Kota',      'Denpasar',   '51', 'Bali', 'Indonesia', 'Denpasar',   -8.6705, 115.2126, 123.98, 726808, 5863, 95.8, 1, 82.40, 124, 'BPS Bali 2024')
+  ('5171', 'Kabupaten Karangasem',  'Kabupaten', 'Karangasem', '51', 'Bali', 'Indonesia', 'Karangasem', -8.4108, 115.5928, 839.54, 412000, 491, 47.2, '3', 71.45, 35, 'BPS Bali 2024'),
+  ('5172', 'Kabupaten Buleleng',    'Kabupaten', 'Singaraja',  '51', 'Bali', 'Indonesia', 'Singaraja',  -8.1150, 115.0883, 1365.88, 712000, 521, 38.5, '3', 70.12, 42, 'BPS Bali 2024'),
+  ('5173', 'Kabupaten Jembrana',    'Kabupaten', 'Negara',     '51', 'Bali', 'Indonesia', 'Negara',     -8.3833, 114.6167, 841.80, 165000, 196, 32.1, '3', 68.90, 12, 'BPS Bali 2024'),
+  ('5174', 'Kabupaten Tabanan',     'Kabupaten', 'Tabanan',    '51', 'Bali', 'Indonesia', 'Tabanan',    -8.5333, 115.0333, 839.33, 478000, 569, 41.7, '2', 72.34, 28, 'BPS Bali 2024'),
+  ('5175', 'Kabupaten Badung',      'Kabupaten', 'Mangupura',  '51', 'Bali', 'Indonesia', 'Mangupura',  -8.6333, 115.1833, 418.62, 612000, 1462, 78.5, '1', 80.15, 156, 'BPS Bali 2024'),
+  ('5176', 'Kabupaten Gianyar',     'Kabupaten', 'Gianyar',    '51', 'Bali', 'Indonesia', 'Gianyar',    -8.5500, 115.3167, 368.00, 575000, 1562, 65.2, '1', 76.88, 88, 'BPS Bali 2024'),
+  ('5177', 'Kabupaten Klungkung',   'Kabupaten', 'Semarapura', '51', 'Bali', 'Indonesia', 'Semarapura', -8.5333, 115.4000, 547.82, 220000, 402, 44.8, '2', 71.90, 22, 'BPS Bali 2024'),
+  ('5178', 'Kabupaten Bangli',      'Kabupaten', 'Bangli',     '51', 'Bali', 'Indonesia', 'Bangli',     -8.4667, 115.3500, 520.57, 268000, 515, 35.6, '3', 70.55, 8, 'BPS Bali 2024'),
+  ('5179', 'Kota Denpasar',         'Kota',      'Denpasar',   '51', 'Bali', 'Indonesia', 'Denpasar',   -8.6705, 115.2126, 123.98, 726808, 5863, 95.8, '1', 82.40, 124, 'BPS Bali 2024')
 on conflict (code) do nothing;
 
 -- =============================================================

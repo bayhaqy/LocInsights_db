@@ -28,7 +28,7 @@ do $$ begin
     'tourist_attraction','beach','temple','hotel_cluster','transit_hub','university','hospital',
     'office_cluster','port','market','school','government','stadium','airport'
   );
-  create type admin_tier_enum          as enum (1,2,3);
+  create type admin_tier_enum          as enum ('1','2','3');
   create type admin_type_enum          as enum ('Kabupaten','Kota');
   create type scraper_status_enum      as enum ('pending','running','success','failed','partial');
   create type scraper_source_enum      as enum ('nominatim','overpass','bps','map_co_id','mapactive_id','manual','google_places','osm');
@@ -66,46 +66,21 @@ $$;
 
 -- =============================================================
 -- Geo-validation helper:
--- Returns TRUE if a (lat,lng) point is on Bali landmass (not in ocean)
--- Bali bounding box: lat  -8.83 to -8.06, lng 114.44 to 115.71
--- A coarse landmass polygon (simplified) is used for validation.
--- Future: replace with actual PostGIS geometry from GADM/BPS Bali shapefile.
+-- Returns TRUE if a (lat,lng) point is within Bali's bounding box (not in ocean)
+-- Bali bounding box: lat  -8.84 to -8.05, lng 114.42 to 115.72
+-- This is a coarse check — for production, replace with actual PostGIS
+-- landmass polygon from GADM or BPS shapefile.
 -- =============================================================
 create or replace function public.is_on_bali_land(p_lat double precision, p_lng double precision)
 returns boolean
 language plpgsql
 immutable
 as $$
-declare
-  -- Simplified Bali landmass bounding sub-areas
-  -- (covers main Bali island + Nusa Penida; excludes open ocean)
-  -- Each tuple: (lat_min, lat_max, lng_min, lng_max)
-  bbox boolean;
 begin
-  -- Quick bounding box check
-  if p_lat < -8.83 or p_lat > -8.06 or p_lng < 114.44 or p_lng > 115.71 then
-    return false;
-  end if;
-
-  -- Refined landmass check (5 sub-zones approximating Bali's shape)
-  bbox := (
-    -- Main island central+east
-    (p_lat between -8.50 and -8.06 and p_lng between 115.00 and 115.71)
-    or
-    -- Main island west
-    (p_lat between -8.40 and -8.06 and p_lng between 114.44 and 115.10)
-    or
-    -- Southern peninsula (Bukit)
-    (p_lat between -8.83 and -8.40 and p_lng between 114.85 and 115.20)
-    or
-    -- Nusa Penida
-    (p_lat between -8.83 and -8.67 and p_lng between 115.45 and 115.55)
-    or
-    -- Negara/Jembrana coastal corridor
-    (p_lat between -8.50 and -8.20 and p_lng between 114.44 and 114.85)
-  );
-
-  return bbox;
+  -- Coarse bounding box check (covers main Bali + Nusa Penida + Nusa Lembongan)
+  -- Excludes obvious ocean points (e.g., coordinates in Java, Lombok, or open sea)
+  return p_lat between -8.84 and -8.05
+     and p_lng between 114.42 and 115.72;
 end;
 $$;
 
